@@ -28,7 +28,7 @@ const Footer = () => {
     >
       <Box
         sx={{
-          minHeight: "450px",
+          minHeight: isMobile ? "472px" : "590px",
           width: "100vw",
           color: "#fefefe",
           textAlign: "center",
@@ -38,27 +38,29 @@ const Footer = () => {
         <Typography sx={{ my: "1.5rem" }} variant="h6" gutterBottom>
           CONTÁCTANOS
         </Typography>
-        <IconButton>
+        <IconButton
+          onClick={() =>
+            window.open(`https://wa.me/522212212970?text=${textSend}`)
+          }
+        >
           <img
             style={{ width: "45px", height: "45px" }}
             src={WhatsApp}
             alt="WhatsApp Lusso"
-            onClick={() =>
-              window.open(`https://wa.me/522212212970?text=${textSend}`)
-            }
           />
         </IconButton>
         <Typography sx={{ mt: "1px", mb: "1rem" }} variant="subtitle2">
           221 221 2970
         </Typography>
-        <IconButton>
+        <IconButton
+          onClick={() =>
+            (window.location.href = `mailto:contacto@lussohighmusic.com.mx?subject=${textSend} &body=${textSend}`)
+          }
+        >
           <img
             style={{ width: "45px", height: "45px" }}
             src={Mail}
             alt="Mail Lusso"
-            onClick={() =>
-              (window.location.href = `mailto:contacto@lussohighmusic.com.mx?subject=${textSend} &body=${textSend}`)
-            }
           />
         </IconButton>
         <Typography sx={{ mt: "1px", mb: "5px" }} variant="subtitle2">
@@ -66,7 +68,11 @@ const Footer = () => {
         </Typography>
         <Grid container spacing={2} sx={{ px: "5rem", my: "1.5rem" }}>
           <Grid item xs={3} sx={{ justifyContent: "center" }}>
-            <IconButton>
+            <IconButton
+              onClick={() =>
+                window.open("https://www.facebook.com/lussohighmusic")
+              }
+            >
               <img
                 style={{
                   width: isMobile ? "35px" : "45px",
@@ -74,14 +80,15 @@ const Footer = () => {
                 }}
                 src={Facebook}
                 alt="Facebook Lusso"
-                onClick={() =>
-                  window.open("https://www.facebook.com/lussohighmusic")
-                }
               />
             </IconButton>
           </Grid>
           <Grid item xs={3} sx={{ justifyContent: "center" }}>
-            <IconButton>
+            <IconButton
+              onClick={() =>
+                window.open("https://www.instagram.com/lussohighmusic/")
+              }
+            >
               <img
                 style={{
                   width: isMobile ? "35px" : "45px",
@@ -89,14 +96,15 @@ const Footer = () => {
                 }}
                 src={Instagram}
                 alt="Instagram Lusso"
-                onClick={() =>
-                  window.open("https://www.instagram.com/lussohighmusic/")
-                }
               />
             </IconButton>
           </Grid>
           <Grid item xs={3} sx={{ justifyContent: "center" }}>
-            <IconButton>
+            <IconButton
+              onClick={() =>
+                window.open("https://www.tiktok.com/@lussohighmusic")
+              }
+            >
               <img
                 style={{
                   width: isMobile ? "35px" : "45px",
@@ -104,14 +112,15 @@ const Footer = () => {
                 }}
                 src={TikTok}
                 alt="Tiktok Lusso"
-                onClick={() =>
-                  window.open("https://www.tiktok.com/@lussohighmusic")
-                }
               />
             </IconButton>
           </Grid>
           <Grid item xs={3} sx={{ justifyContent: "center" }}>
-            <IconButton>
+            <IconButton
+              onClick={() =>
+                window.open("http://www.youtube.com/@lussohighmusic")
+              }
+            >
               <img
                 style={{
                   width: isMobile ? "35px" : "45px",
@@ -119,9 +128,6 @@ const Footer = () => {
                 }}
                 src={YouTube}
                 alt="YouTube Lusso"
-                onClick={() =>
-                  window.open("http://www.youtube.com/@lussohighmusic")
-                }
               />
             </IconButton>
           </Grid>
