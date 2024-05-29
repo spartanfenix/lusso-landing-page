@@ -20,7 +20,7 @@ interface Props {
 }
 
 const drawerWidth = 240;
-const navItems = ["Home", "Servicios", "Paquetes", "Galeria", "Contacto"];
+const navItems = ["HOME", "SERVICIOS", "PAQUETES", "GALERÍA", "CONTACTO"];
 const navLinks = ["/", "/services", "/packets", "/gallery", "/contact"];
 
 export default function DrawerAppBar(props: Props) {
@@ -35,7 +35,7 @@ export default function DrawerAppBar(props: Props) {
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Link to="/" className="title">
         <img
-          style={{ padding: "0.25rem 0.5rem", width: "220px", height: "55px" }}
+          style={{ padding: "0.25rem 0.5rem", width: "206px", height: "52px" }}
           src={LogoLusso}
           alt="Lusso"
         />
@@ -89,7 +89,7 @@ export default function DrawerAppBar(props: Props) {
           >
             <Link to="/" className="title">
               <img
-                style={{ padding: "0.5rem 0", width: "180px", height: "55px" }}
+                style={{ padding: "0.25rem 0", width: "180px", height: "55px" }}
                 src={LogoLusso}
                 alt="Lusso"
               />
@@ -103,7 +103,7 @@ export default function DrawerAppBar(props: Props) {
                   textDecoration: "none",
                   color: "inherit",
                   width: "100%",
-                  margin: "0 1rem",
+                  margin: "0 0.5rem",
                 }}
               >
                 <Box
