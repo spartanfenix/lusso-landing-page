@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
-import Footer from "../Footer/Footer";
 import Hero from "../Hero/Hero";
 import CardPacket from "../CardPacket/CardPacket";
 import { Box, Stack, Typography, useMediaQuery } from "@mui/material";
@@ -71,7 +70,6 @@ const Packets = () => {
             para la zona de Puebla capital y Chuolula, tenemos diversión y
             calidad para fiestas diferentes o más pequeñas.
           </Typography>
-          <Footer />
         </>
       )}
     </>

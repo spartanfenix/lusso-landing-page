@@ -2,7 +2,6 @@ import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
-import { styled } from "@mui/material/styles";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
@@ -13,27 +12,16 @@ import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Button, { ButtonProps } from "@mui/material/Button";
 import { Link, NavLink } from "react-router-dom";
-import logo from "../../assets/img/logo.png";
+import LogoLusso from "../../assets/img/LogoLusso.png";
 
 interface Props {
   window?: () => Window;
 }
 
-// eslint-disable-next-line no-empty-pattern
-const ColorButton = styled(Button)<ButtonProps>(({}) => ({
-  color: "#030303",
-  backgroundColor: "#fefefe",
-  "&:hover": {
-    color: "#fefefe",
-    backgroundColor: "#030303",
-  },
-}));
-
 const drawerWidth = 240;
-const navItems = ["Inicio", "Paquetes", " Galeria", "Contacto"];
-const navLinks = ["/", "/packets", "/gallery", "/contact"];
+const navItems = ["Home", "Servicios", "Paquetes", "Galeria", "Contacto"];
+const navLinks = ["/", "/services", "/packets", "/gallery", "/contact"];
 
 export default function DrawerAppBar(props: Props) {
   const { window } = props;
@@ -47,8 +35,8 @@ export default function DrawerAppBar(props: Props) {
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Link to="/" className="title">
         <img
-          style={{ width: "240px", height: "48px" }}
-          src={logo}
+          style={{ padding: "0.25rem 0.5rem", width: "220px", height: "55px" }}
+          src={LogoLusso}
           alt="Lusso"
         />
       </Link>
@@ -101,22 +89,37 @@ export default function DrawerAppBar(props: Props) {
           >
             <Link to="/" className="title">
               <img
-                style={{ width: "240px", height: "48px" }}
-                src={logo}
+                style={{ padding: "0.5rem 0", width: "180px", height: "55px" }}
+                src={LogoLusso}
                 alt="Lusso"
               />
             </Link>
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item, index) => (
-              <ColorButton
-                variant="text"
-                key={item}
-                component={NavLink}
+              <NavLink
                 to={navLinks[index]}
+                style={{
+                  textDecoration: "none",
+                  color: "inherit",
+                  width: "100%",
+                  margin: "0 1rem",
+                }}
               >
-                {item}
-              </ColorButton>
+                <Box
+                  component="span"
+                  sx={{
+                    transition: "text-decoration 0.3s",
+                    "&:hover": {
+                      background: "#030303",
+                      color: "#fefefe",
+                    },
+                  }}
+                  style={{ padding: "0.25rem 0.25rem", borderRadius: "4px" }}
+                >
+                  {item}
+                </Box>
+              </NavLink>
             ))}
           </Box>
         </Toolbar>

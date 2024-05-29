@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
-import Footer from "../Footer/Footer";
 import Hero from "../Hero/Hero";
 
 const Home = () => {
@@ -17,8 +16,6 @@ const Home = () => {
       ) : (
         <>
           <Hero />
-
-          <Footer />
         </>
       )}
     </>

@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 import portadaContacto from "../../assets/img/portadaContacto.png";
 import portadaGaleria from "../../assets/img/portadaGaleria.png";
 import portadaPaquetes from "../../assets/img/portadaPaquetes.png";
+import portadaServicios from "../../assets/img/portadaServicios.png";
 import portadaInicio from "../../assets/img/portadaInicio.png";
 import { useMediaQuery } from "@mui/material";
 
@@ -27,6 +28,8 @@ const getBackgroundImage = (path: string) => {
   switch (path) {
     case "/":
       return portadaInicio;
+    case "/services":
+      return portadaServicios;
     case "/packets":
       return portadaPaquetes;
     case "/gallery":
