@@ -38,7 +38,7 @@ const Packets = () => {
             sx={{
               maxWidth: isTablet ? "750px" : "1920px",
               margin: "0 auto",
-              padding: "40px",
+              padding: "10px",
             }}
           >
             <Stack
@@ -47,7 +47,7 @@ const Packets = () => {
               alignItems="center"
               useFlexGap
               flexWrap="wrap"
-              spacing={{ xs: 5, sm: 5, md: 2, lg: 2, xl: 1 }}
+              spacing={{ xs: 5, sm: 5, md: 2, lg: 4, xl: 1 }}
             >
               <CardPacket packetType={"essentials"} />
               <CardPacket packetType={"gold"} />

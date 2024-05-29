@@ -4,6 +4,7 @@ import portadaGaleria from "../../assets/img/portadaGaleria.png";
 import portadaPaquetes from "../../assets/img/portadaPaquetes.png";
 import portadaServicios from "../../assets/img/portadaServicios.png";
 import portadaInicio from "../../assets/img/portadaInicio.png";
+import Error404 from "../../assets/img/Error404.png";
 import { useMediaQuery } from "@mui/material";
 
 const Hero = () => {
@@ -16,7 +17,7 @@ const Hero = () => {
       <img
         style={{ marginTop: isMobile ? "56px" : "60px", width: "100vw" }}
         src={backgroundImage}
-        alt={backgroundImage}
+        alt="Portadas Lusso Band"
       />
     </div>
   );
@@ -36,7 +37,9 @@ const getBackgroundImage = (path: string) => {
       return portadaGaleria;
     case "/contact":
       return portadaContacto;
+    case "*":
+      return Error404;
     default: // Default image
-      return portadaInicio;
+      return Error404;
   }
 };

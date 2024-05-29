@@ -36,7 +36,7 @@ const FormContact = () => {
     <Box
       component="form"
       sx={{
-        maxWidth: "1000px",
+        maxWidth: "1100px",
         textAlign: "center",
         py: "2rem",
         px: "2rem",

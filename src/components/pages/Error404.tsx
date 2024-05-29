@@ -1,5 +1,7 @@
+import Hero from "../Hero/Hero";
+
 const Error404 = () => {
-  return <div>Error404</div>;
+  return <Hero />;
 };
 
 export default Error404;
