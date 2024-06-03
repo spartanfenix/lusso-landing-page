@@ -36,7 +36,7 @@ const FormContact = () => {
     <Box
       component="form"
       sx={{
-        maxWidth: "1100px",
+        maxWidth: "1000px",
         textAlign: "center",
         py: "2rem",
         px: "2rem",
@@ -130,7 +130,7 @@ const FormContact = () => {
 
                 {cleared && (
                   <Alert
-                    sx={{ position: "absolute", bottom: 0, right: 0 }}
+                    sx={{ position: "absolute", bottom: -40, right: 120 }}
                     severity="success"
                   >
                     ¡Campo Fecha Vacio!

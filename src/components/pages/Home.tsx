@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
-import Hero from "../Hero/Hero";
 import { Box, Grid, Typography } from "@mui/material";
 import LussoInicio from "../../assets/img/lussoInicio.png";
 import ImagenServicios from "../../assets/img/serviciosMusicales.png";
+import HeroSlider from "../Hero/HeroSlider";
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -18,7 +18,7 @@ const Home = () => {
         <Loading />
       ) : (
         <>
-          <Hero />
+          <HeroSlider />
           <Box
             component="form"
             sx={{

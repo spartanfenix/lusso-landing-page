@@ -18,7 +18,12 @@ const Contact = () => {
       ) : (
         <>
           <Hero />
-          <Grid container justifyContent="center" alignItems="center">
+          <Grid
+            container
+            justifyContent="center"
+            alignItems="center"
+            style={{ margin: 0, width: "100%" }}
+          >
             <FormContact />
           </Grid>
         </>

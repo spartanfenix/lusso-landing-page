@@ -1,0 +1,13 @@
+.slick-prev:before,
+.slick-next:before {
+  color: black;
+}
+
+.slick-prev,
+.slick-next {
+  z-index: 1; /* Asegúrate de que las flechas estén por encima del contenido */
+}
+
+.slick-slide > div {
+  margin: 0;
+}
