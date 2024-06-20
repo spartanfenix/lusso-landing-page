@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
-import FormContact from "../FormContact/FormContact";
 import { Grid } from "@mui/material";
 import Hero from "../Hero/Hero";
+import FormContactS from "../FormContact/FormContactS";
 
 const Contact = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -24,7 +24,7 @@ const Contact = () => {
             alignItems="center"
             style={{ margin: 0, width: "100%" }}
           >
-            <FormContact />
+            <FormContactS />
           </Grid>
         </>
       )}

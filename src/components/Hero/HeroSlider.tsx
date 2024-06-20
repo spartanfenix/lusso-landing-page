@@ -17,7 +17,7 @@ const settings = {
   slidesToShow: 1,
   slidesToScroll: 1,
   autoplay: true,
-  autoplaySpeed: 5000,
+  autoplaySpeed: 6000,
   arrows: true,
 };
 
@@ -49,50 +49,32 @@ const HeroSlider = () => {
     >
       <Slider {...settings}>
         {slides.map((slide, index) => (
-          //   <Box
-          //     key={index}
-          //     sx={{
-          //       width: "100vw",
-          //       background: `url(${slide.background})`,
-          //       backgroundRepeat: "no-repeat",
-          //       backgroundSize: "cover",
-          //       backgroundPosition: "center",
-          //       position: "relative",
-          //       "@media (max-width: 600px)": {
-          //         backgroundSize: "contain",
-          //         height: "25vh",
-          //       },
-          //       "@media (min-width: 600px) and (max-width: 960px)": {
-          //         backgroundSize: "contain",
-          //         height: "50vh",
-          //       },
-          //       "@media (min-width: 960px)": {
-          //         backgroundSize: "cover",
-          //         height: "100vh",
-          //       },
-          //     }}
-          //   >
-          //     <Box
-          //       component="img"
-          //       src={slide.textImage}
-          //       alt="Texto portada"
-          //       sx={{
-          //         position: "absolute",
-          //         top: "50%",
-          //         left: "50%",
-          //         transform: "translate(-50%, -50%)",
-          //         width: isMobile ? "50%" : "80%",
-          //         maxWidth: "600px",
-          //       }}
-          //     />
-          //   </Box>
-          <div key={index}>
-            <img
-              style={{ marginTop: isMobile ? "56px" : "60px", width: "100vw" }}
-              src={slide.background}
-              alt="Portadas Lusso Band"
-            />
-          </div>
+            <Box
+              key={index}
+              sx={{
+                width: "100vw",
+                height: isMobile ? "25vh" : isTablet ? "50vh" : "100vh",
+                backgroundImage: `url(${slide.background})`,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+                backgroundPosition: isMobile || isTablet ? "center top" : "center center",
+                position: "relative",
+              }}
+            >
+              <Box
+                component="img"
+                src={slide.textImage}
+                alt="Texto portada"
+                sx={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  width: isMobile ? "50%" : "80%",
+                  maxWidth: "600px",
+                }}
+              />
+            </Box>
         ))}
       </Slider>
     </Box>

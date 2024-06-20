@@ -1,13 +1,14 @@
+import React, { useEffect, useState } from "react";
 import {
   Alert,
   Box,
   Button,
+  Checkbox,
   FormControl,
   FormControlLabel,
+  FormGroup,
   FormLabel,
   Grid,
-  Radio,
-  RadioGroup,
   TextField,
 } from "@mui/material";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
@@ -15,11 +16,25 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { esES } from "@mui/x-date-pickers/locales";
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import SendIcon from "@mui/icons-material/Send";
-import { useEffect, useState } from "react";
-import dayjs from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 
-const FormContact = () => {
-  const [cleared, setCleared] = useState<boolean>(false);
+const FormContactS = () => {
+  const [formValues, setFormValues] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    place: "",
+    eventDate: null as Dayjs | null,
+    services: {
+      lusso: false,
+      viagio: false,
+      eleva: false,
+    },
+    information: "",
+  });
+
+  const [cleared, setCleared] = useState(false);
+  const [alertOpen, setAlertOpen] = useState(false);
 
   useEffect(() => {
     if (cleared) {
@@ -32,9 +47,58 @@ const FormContact = () => {
     return () => {};
   }, [cleared]);
 
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type, checked } = event.target;
+    if (type === "checkbox") {
+      setFormValues({
+        ...formValues,
+        services: {
+          ...formValues.services,
+          [name]: checked,
+        },
+      });
+    } else {
+      setFormValues({
+        ...formValues,
+        [name]: value,
+      });
+    }
+  };
+
+  const handleDateChange = (date: dayjs.Dayjs | null) => {
+    setFormValues({
+      ...formValues,
+      eventDate: date,
+    });
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log(formValues);
+    setAlertOpen(true);
+    setFormValues({
+      name: "",
+      phone: "",
+      email: "",
+      place: "",
+      eventDate: null,
+      services: {
+        lusso: false,
+        viagio: false,
+        eleva: false,
+      },
+      information: "",
+    });
+
+    setTimeout(() => {
+      setAlertOpen(false);
+    }, 4500);
+  };
+
   return (
     <Box
       component="form"
+      onSubmit={handleSubmit}
       sx={{
         maxWidth: "1000px",
         textAlign: "center",
@@ -54,10 +118,11 @@ const FormContact = () => {
           <Grid item xs={16} md={16} lg={16}>
             <TextField
               fullWidth
-              id="outlined-basic"
               label="Nombre"
               type="text"
               name="name"
+              value={formValues.name}
+              onChange={handleChange}
               required
               variant="outlined"
             />
@@ -65,10 +130,11 @@ const FormContact = () => {
           <Grid item xs={16} md={16} lg={16}>
             <TextField
               fullWidth
-              id="outlined-basic"
-              label="Telefono"
+              label="WhatsApp"
               type="tel"
               name="phone"
+              value={formValues.phone}
+              onChange={handleChange}
               required
               variant="outlined"
             />
@@ -76,22 +142,24 @@ const FormContact = () => {
           <Grid item xs={16} md={16} lg={16}>
             <TextField
               fullWidth
-              id="outlined-basic"
               label="Correo"
               type="email"
               name="email"
+              value={formValues.email}
+              onChange={handleChange}
               required
               variant="outlined"
             />
           </Grid>
           <Grid item xs={16} md={8} lg={8}>
             <TextField
-              helperText="Por favor ingrese el lugar de su evento"
+              helperText="Ejemplo(Salón Los Girasoles, San Andres Cholula)"
               fullWidth
-              id="outlined-basic"
-              label="Lugar de evento"
+              label="Nombre y Ubicación del salón/evento"
               type="text"
               name="place"
+              value={formValues.place}
+              onChange={handleChange}
               required
               variant="outlined"
             />
@@ -113,6 +181,8 @@ const FormContact = () => {
               >
                 <DatePicker
                   sx={{ width: "100%" }}
+                  value={formValues.eventDate}
+                  onChange={handleDateChange}
                   slotProps={{
                     textField: {
                       helperText: "Por favor ingrese la fecha de su evento",
@@ -127,7 +197,6 @@ const FormContact = () => {
                     dayjs(date).isBefore(dayjs().add(0, "day"))
                   }
                 />
-
                 {cleared && (
                   <Alert
                     sx={{ position: "absolute", bottom: -40, right: 120 }}
@@ -143,37 +212,68 @@ const FormContact = () => {
             <FormLabel id="demo-radio-buttons-group-label">
               ¿Qué servicio requieres?
             </FormLabel>
-            <RadioGroup
-              aria-labelledby="demo-radio-buttons-group-label"
-              defaultValue="lusso"
-              name="radio-buttons-group"
-            >
+            <FormGroup>
               <FormControlLabel
-                value="lusso"
-                control={<Radio />}
+                control={
+                  <Checkbox
+                    name="lusso"
+                    checked={formValues.services.lusso}
+                    onChange={handleChange}
+                    sx={{
+                      color: "black",
+                      "&.Mui-checked": {
+                        color: "black",
+                      },
+                    }}
+                  />
+                }
                 label="Lusso Band"
               />
               <FormControlLabel
-                value="viagio"
-                control={<Radio />}
+                control={
+                  <Checkbox
+                    name="viagio"
+                    checked={formValues.services.viagio}
+                    onChange={handleChange}
+                    sx={{
+                      color: "black",
+                      "&.Mui-checked": {
+                        color: "black",
+                      },
+                    }}
+                  />
+                }
                 label="Viagio"
               />
               <FormControlLabel
-                value="eleva"
-                control={<Radio />}
+                control={
+                  <Checkbox
+                    name="eleva"
+                    checked={formValues.services.eleva}
+                    onChange={handleChange}
+                    sx={{
+                      color: "black",
+                      "&.Mui-checked": {
+                        color: "black",
+                      },
+                    }}
+                  />
+                }
                 label="Eleva"
               />
-            </RadioGroup>
+            </FormGroup>
           </Grid>
           <Grid item xs={16} md={8} lg={8}>
             <TextField
               fullWidth
-              id="outlined-multiline-static"
               label="Información adicional"
               type="text"
               name="information"
+              value={formValues.information}
+              onChange={handleChange}
               multiline
               rows={5}
+              variant="outlined"
             />
           </Grid>
           <Grid item xs={16} md={16} lg={16}>
@@ -185,6 +285,7 @@ const FormContact = () => {
               }}
             >
               <Button
+                type="submit"
                 variant="contained"
                 endIcon={<SendIcon />}
                 sx={{
@@ -198,8 +299,13 @@ const FormContact = () => {
           </Grid>
         </Grid>
       </FormControl>
+      {alertOpen && (
+        <Alert variant="filled" severity="success" sx={{ my: 2 }}>
+          Gracias por escogernos, en breve nos comunicaremos con usted.
+        </Alert>
+      )}
     </Box>
   );
 };
 
-export default FormContact;
+export default FormContactS;
