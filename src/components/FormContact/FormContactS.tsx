@@ -35,6 +35,7 @@ const FormContactS = () => {
 
   const [cleared, setCleared] = useState(false);
   const [alertOpen, setAlertOpen] = useState(false);
+  const [checkboxError, setCheckboxError] = useState(false);
 
   useEffect(() => {
     if (cleared) {
@@ -57,6 +58,7 @@ const FormContactS = () => {
           [name]: checked,
         },
       });
+      setCheckboxError(false);
     } else {
       setFormValues({
         ...formValues,
@@ -74,6 +76,14 @@ const FormContactS = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const { services } = formValues;
+    const isAnyServiceChecked = Object.values(services).some((value) => value);
+
+    if (!isAnyServiceChecked) {
+      setCheckboxError(true);
+      return;
+    }
+
     console.log(formValues);
     setAlertOpen(true);
     setFormValues({
@@ -186,6 +196,7 @@ const FormContactS = () => {
                   slotProps={{
                     textField: {
                       helperText: "Por favor ingrese la fecha de su evento",
+                      required: true,
                     },
                     field: {
                       clearable: true,
@@ -262,6 +273,11 @@ const FormContactS = () => {
                 label="Eleva"
               />
             </FormGroup>
+            {checkboxError && (
+              <Alert severity="error" sx={{ mt: 2 }}>
+                Debes seleccionar al menos un servicio.
+              </Alert>
+            )}
           </Grid>
           <Grid item xs={16} md={8} lg={8}>
             <TextField
