@@ -5,9 +5,56 @@
 
 .slick-prev,
 .slick-next {
-  z-index: 1; /* Asegúrate de que las flechas estén por encima del contenido */
+  z-index: 1;
 }
 
 .slick-slide > div {
   margin: 0;
+}
+
+.video {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+
+.video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.slider-container {
+  width: 100%;
+  max-width: 800px; 
+  margin: auto;
+}
+.slider-container img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .slider-container {
+    padding: 0 30px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .slider-container {
+    padding: 0 40px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .slider-container {
+    padding: 0 60px;
+  }
 }

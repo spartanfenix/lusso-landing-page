@@ -48,76 +48,70 @@ const SliderYoutube = () => {
       }}
     >
       <Slider {...settings}>
-        <div>
+        <div className="video">
           <iframe
-            width="448"
-            height="252"
             src="https://www.youtube.com/embed/_5EQzkUSqqw?si=S5BBE1wYc6CoSSbA&amp;controls=0"
             title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
             allowFullScreen
+            loading="lazy"
           ></iframe>
         </div>
-        <div>
+        <div className="video">
           <iframe
-            width="448"
-            height="252"
             src="https://www.youtube.com/embed/EP3R0gHddJY?si=8wrJLQ9RdXKPnr1b&amp;controls=0"
             title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
             allowFullScreen
+            loading="lazy"
           ></iframe>
         </div>
-        <div>
+        <div className="video">
           <iframe
-            width="448"
-            height="252"
             src="https://www.youtube.com/embed/uthUYSkOrGE?si=F2pxsl41N7fwSuQD"
             title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
             allowFullScreen
+            loading="lazy"
           ></iframe>
         </div>
-        <div>
+        <div className="video">
           <iframe
-            width="448"
-            height="252"
             src="https://www.youtube.com/embed/dgYPOdm6v8E?si=mYjrDCnB8S8Bp7N3"
             title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
             allowFullScreen
+            loading="lazy"
           ></iframe>
         </div>
-        <div>
+        <div className="video">
           <iframe
-            width="448"
-            height="252"
             src="https://www.youtube.com/embed/hOcGMyvCWcw?si=Au7Q1QYAvtG_Uab0&amp;controls=0"
             title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
             allowFullScreen
+            loading="lazy"
           ></iframe>
         </div>
-        <div>
+        <div className="video">
           <iframe
-            width="448"
-            height="252"
             src="https://www.youtube.com/embed/HXGcQjxE-00?si=cT9aiYUiQt7lhLS9"
             title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
             allowFullScreen
+            loading="lazy"
           ></iframe>
         </div>
       </Slider>
