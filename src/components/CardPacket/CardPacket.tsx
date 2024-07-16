@@ -26,6 +26,7 @@ const CardPacket = ({ packetType }: CardPacketProps) => {
         component="img"
         image={packetsImages[packetType]}
         alt={`Paquete ${packetType}`}
+        loading="lazy"
       />
     </Card>
   );

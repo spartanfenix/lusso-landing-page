@@ -43,7 +43,7 @@ export default function DrawerAppBar(props: Props) {
       <Divider />
       <List>
         {navItems.map((item, index) => (
-          <ListItem key={item} disablePadding>
+          <ListItem key={index} disablePadding>
             <ListItemButton sx={{ textAlign: "center" }}>
               <NavLink
                 to={navLinks[index]}
@@ -98,6 +98,7 @@ export default function DrawerAppBar(props: Props) {
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item, index) => (
               <NavLink
+                key={index}
                 to={navLinks[index]}
                 style={{
                   textDecoration: "none",

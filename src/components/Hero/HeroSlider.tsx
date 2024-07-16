@@ -49,32 +49,33 @@ const HeroSlider = () => {
     >
       <Slider {...settings}>
         {slides.map((slide, index) => (
+          <Box
+            key={index}
+            sx={{
+              width: "100vw",
+              height: isMobile ? "25vh" : isTablet ? "50vh" : "100vh",
+              backgroundImage: `url(${slide.background})`,
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
+              backgroundPosition:
+                isMobile || isTablet ? "center top" : "center center",
+              position: "relative",
+            }}
+          >
             <Box
-              key={index}
+              component="img"
+              src={slide.textImage}
+              alt="Texto portada"
               sx={{
-                width: "100vw",
-                height: isMobile ? "25vh" : isTablet ? "50vh" : "100vh",
-                backgroundImage: `url(${slide.background})`,
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "cover",
-                backgroundPosition: isMobile || isTablet ? "center top" : "center center",
-                position: "relative",
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                width: isMobile ? "50%" : "80%",
+                maxWidth: "600px",
               }}
-            >
-              <Box
-                component="img"
-                src={slide.textImage}
-                alt="Texto portada"
-                sx={{
-                  position: "absolute",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                  width: isMobile ? "50%" : "80%",
-                  maxWidth: "600px",
-                }}
-              />
-            </Box>
+            />
+          </Box>
         ))}
       </Slider>
     </Box>

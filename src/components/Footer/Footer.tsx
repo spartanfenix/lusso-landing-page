@@ -12,12 +12,36 @@ import Facebook from "../../assets/icons/facebook_lusso.png";
 import Instagram from "../../assets/icons/instagram_lusso.png";
 import TikTok from "../../assets/icons/tiktok_lusso.png";
 import YouTube from "../../assets/icons/youtube_lusso.png";
+import { useEffect, useRef } from "react";
 
 const Footer = () => {
   const isMobile = useMediaQuery("(max-width:600px)");
   const textSend = "Hola, me interesa contratar sus servicios.";
+  const footerRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const footer = footerRef.current;
+    if (!footer) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          footer.style.backgroundImage = `url(${Lusso_Footer})`;
+          observer.unobserve(footer);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(footer);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
   return (
     <div
+      ref={footerRef}
       style={{
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
@@ -47,6 +71,7 @@ const Footer = () => {
             style={{ width: "45px", height: "45px" }}
             src={WhatsApp}
             alt="WhatsApp Lusso"
+            loading="lazy"
           />
         </IconButton>
         <Typography sx={{ mt: "1px", mb: "1rem" }} variant="subtitle2">
@@ -61,6 +86,7 @@ const Footer = () => {
             style={{ width: "45px", height: "45px" }}
             src={Mail}
             alt="Mail Lusso"
+            loading="lazy"
           />
         </IconButton>
         <Typography sx={{ mt: "1px", mb: "5px" }} variant="subtitle2">
@@ -80,6 +106,7 @@ const Footer = () => {
                 }}
                 src={Facebook}
                 alt="Facebook Lusso"
+                loading="lazy"
               />
             </IconButton>
           </Grid>
@@ -96,6 +123,7 @@ const Footer = () => {
                 }}
                 src={Instagram}
                 alt="Instagram Lusso"
+                loading="lazy"
               />
             </IconButton>
           </Grid>
@@ -112,6 +140,7 @@ const Footer = () => {
                 }}
                 src={TikTok}
                 alt="Tiktok Lusso"
+                loading="lazy"
               />
             </IconButton>
           </Grid>
@@ -128,6 +157,7 @@ const Footer = () => {
                 }}
                 src={YouTube}
                 alt="YouTube Lusso"
+                loading="lazy"
               />
             </IconButton>
           </Grid>

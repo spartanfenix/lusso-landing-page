@@ -50,17 +50,19 @@ const MusicalServices = ({ servicesType }: MusicalServicesProps) => {
           component="img"
           image={servicesImage[servicesType]}
           alt={`Servicio ${servicesType}`}
+          loading="lazy"
         />
         <CardMedia
           component="img"
           image={servicesText[servicesType]}
           alt="Servicios"
           style={{ padding: "2rem 2rem" }}
+          loading="lazy"
         />
         <CardContent>
           <Typography
             gutterBottom
-            variant={isMobile ? "body1" : "h5"}
+            variant={isMobile ? "body1" : "h6"}
             component="div"
             sx={{ textAlign: "center", textTransform: "uppercase" }}
           >
