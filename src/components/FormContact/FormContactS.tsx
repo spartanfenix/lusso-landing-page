@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   Alert,
   Box,
@@ -17,6 +17,12 @@ import { esES } from "@mui/x-date-pickers/locales";
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import SendIcon from "@mui/icons-material/Send";
 import dayjs, { Dayjs } from "dayjs";
+import "dayjs/locale/es";
+import weekday from "dayjs/plugin/weekday";
+import emailjs from "@emailjs/browser";
+
+dayjs.locale("es");
+dayjs.extend(weekday);
 
 const FormContactS = () => {
   const [formValues, setFormValues] = useState({
@@ -33,9 +39,14 @@ const FormContactS = () => {
     information: "",
   });
 
+  const emailjs_service_id = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+  const emailjs_template_id = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+  const emailjs_public_key = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
   const [cleared, setCleared] = useState(false);
   const [alertOpen, setAlertOpen] = useState(false);
   const [checkboxError, setCheckboxError] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
     if (cleared) {
@@ -74,6 +85,44 @@ const FormContactS = () => {
     });
   };
 
+  const sendEmail = () => {
+    if (formRef.current) {
+      const selectedServices = Object.entries(formValues.services)
+        .filter(([, value]) => value)
+        .map(([key]) => key)
+        .join(", ");
+
+      const servicesField = formRef.current.elements.namedItem("services");
+      if (servicesField) {
+        (servicesField as HTMLInputElement).value = selectedServices;
+      }
+
+      const eventDateField = formRef.current.elements.namedItem("eventDate");
+      if (eventDateField && formValues.eventDate) {
+        const formattedDate = formValues.eventDate
+          .locale("es")
+          .format("DD [de] MMMM [de] YYYY");
+        (eventDateField as HTMLInputElement).value = formattedDate;
+      }
+
+      emailjs
+        .sendForm(
+          emailjs_service_id,
+          emailjs_template_id,
+          formRef.current,
+          emailjs_public_key
+        )
+        .then(
+          () => {
+            console.log("SUCCESS!");
+          },
+          (error) => {
+            console.log("FAILED...", error.text);
+          }
+        );
+    }
+  };
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const { services } = formValues;
@@ -85,6 +134,7 @@ const FormContactS = () => {
     }
 
     console.log(formValues);
+    sendEmail();
     setAlertOpen(true);
     setFormValues({
       name: "",
@@ -108,6 +158,7 @@ const FormContactS = () => {
   return (
     <Box
       component="form"
+      ref={formRef}
       onSubmit={handleSubmit}
       sx={{
         maxWidth: "1000px",
@@ -177,6 +228,7 @@ const FormContactS = () => {
           <Grid item xs={16} md={8} lg={8}>
             <LocalizationProvider
               dateAdapter={AdapterDayjs}
+              adapterLocale="es"
               localeText={
                 esES.components.MuiLocalizationProvider.defaultProps.localeText
               }
@@ -207,6 +259,7 @@ const FormContactS = () => {
                   shouldDisableDate={(date) =>
                     dayjs(date).isBefore(dayjs().add(0, "day"))
                   }
+                  name="eventDate"
                 />
                 {cleared && (
                   <Alert
@@ -292,6 +345,8 @@ const FormContactS = () => {
               variant="outlined"
             />
           </Grid>
+          {/* Campo oculto para los servicios */}
+          <input type="hidden" name="services" value="" />
           <Grid item xs={16} md={16} lg={16}>
             <Box
               sx={{
